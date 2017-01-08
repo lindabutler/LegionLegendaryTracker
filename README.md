@@ -19,6 +19,7 @@ Also should show total chances on current track count.
 UI Interface Buttons:
 save button with box/dropdown to set which legendary number this is. and box for partial count.
 reset button (are you sure?)
+chose what you're tracking (so you don't show normals to 110s, arenas to those who never pvp, etc.)
 
 
 Database:
