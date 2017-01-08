@@ -23,4 +23,4 @@ chose what you're tracking (so you don't show normals to 110s, arenas to those w
 
 
 Database:
-send number of sttempts taken back to databse (per individual)
+send number of attempts taken back to database (per individual category; give it to mathy people?)
