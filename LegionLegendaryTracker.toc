@@ -1,0 +1,21 @@
+## Interface: 70100
+## Title: Legion Legendary Tracker
+## Author: Linda Butler
+## Version: 1.0
+## Notes: Tracks chances you've had for a legendary to drop.
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariablesPerCharacter: normalDungeonBoss,heroicDungeonBoss,mythicDungeonBoss,LFRRaidBoss,normalRaidBoss,heroicRaidBoss,mythicRaidBoss,legionWorldBosses,emissaryCaches,arenaWins,battlegroundWins,PvPStrongboxes,mythicPlusWeeklyCache,mythicPlusChests,legionRareMobs,legionTreasures,totalChancesCurrent
+normalDungeonBoss, heroicDungeonBoss, mythicDungeonBoss,
+LFRRaidBoss, normalRaidBoss, heroicRaidBoss, mythicRaidBoss,
+legionWorldBosses,
+emissaryCaches,
+arenaWins,
+battlegroundWins,
+PvPStrongboxes,
+mythicPlusWeeklyCache,
+mythicPlusChests,
+legionRareMobs,
+legionTreasures,
+LegionLegendaryTracker.lua
+LegionLegendaryTracker.xml

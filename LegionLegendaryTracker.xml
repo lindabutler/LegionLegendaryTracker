@@ -1,0 +1,670 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="LegionLegendaryTracker.lua"/>
+
+	<Frame name="LLT_GeneralScripts" hidden="true">
+		<Scripts>
+			<OnEvent>LegionLegendaryTracker:OnEvent(self, event, ...)</OnEvent>
+			<OnLoad>LegionLegendaryTracker:OnLoad(self)</OnLoad>
+		</Scripts>
+	</Frame> 
+	
+    
+    --Invisible Foundation Frame
+	<Frame name="LLT_mainFrame" virtual="true" parent="UIParent">
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+	</Frame>
+
+    --Visible Text Frames Begin
+	<Frame name="LLT_F1" inherits="LLT_mainFrame" movable="true" enableMouse="true" hidden="true">
+		<Size>
+			<AbsDimension x="400" y="40"/>
+		</Size>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Legion Legendary Tracker">
+                    <FontHeight val="16"/>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnMouseDown> self:StartMoving();  </OnMouseDown>
+			<OnMouseUp>  self:StopMovingOrSizing(); </OnMouseUp>
+			<OnDragStop> self:StopMovingOrSizing(); </OnDragStop>
+            <OnLoad> self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 1); </OnLoad>
+		</Scripts> 
+	</Frame>
+
+	<Frame name="LLT_F2" inherits="LLT_mainFrame" hidden="true">
+		<Size>
+			<AbsDimension x="400" y="25"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F1">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Dungeon Bosses (Normal): ">
+					 <FontHeight val="12"/>
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT">
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" a="1" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+			</OnLoad>
+		</Scripts> 
+	</Frame>
+
+	<Frame name="LLT_F3" inherits="LLT_mainFrame" hidden="true">
+		<Size>
+			<AbsDimension x="400" y="25"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F2">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Dungeon Bosses (Heroic): ">
+					 <FontHeight val="12"/>
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT">
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" a="1" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+			</OnLoad>
+		</Scripts> 
+	</Frame>
+
+	<Frame name="LLT_F4" inherits="LLT_mainFrame" hidden="true">
+		<Size>
+			<AbsDimension x="400" y="25"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F3">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Dungeon Bosses (Mythic): ">
+					 <FontHeight val="12"/>
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT">
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" a="1" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+			</OnLoad>
+		</Scripts> 
+	</Frame>
+    
+    <Frame name="LLT_F5" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F4">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (LFR): ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+
+    <Frame name="LLT_F6" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F5">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (Normal): ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F7" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F6">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (Heroic): ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F8" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F7">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (Mythic): ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F9" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F8">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="World Raid Bosses: ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F10" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F9">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Emissary Caches: ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F11" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F10">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Arena Wins: ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F12" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F11">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Battleground Wins: ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F13" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F12">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="PvP Strongboxes: ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F14" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F13">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Mythic+ Weekly Cache: ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F15" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F14">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Mythic+ Chests (1/2/3): ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F16" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F15">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Legion Rare Mobs (first kill): ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F18" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F17">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Legion World Treasure Chests): ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F19" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F18">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text=" ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    <Frame name="LLT_F20" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F19">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text=" ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
+    
+    
+    
+<!--	<Frame name="LLT_EX" inherits="LLT_mainFrame" hidden="true">
+		<Size>
+			<AbsDimension x="100" y="200"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F2">
+				<Offset>
+					<AbsDimension x="0" y="-5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Text" inherits="GameFontHighlightSmall"  text="Statistics: 0">
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<frames>
+			<Button name="$parent_Button1" inherits="UIPanelButtonTemplate" text="Reset" id="20">
+				<Size>
+					<AbsDimension x="70" y="15"/>
+				</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="LEFT" relativeTo="LLT_F3_Text">
+							<Offset>
+								<AbsDimension x="-1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				<Scripts>
+				</Scripts>
+			</Button>
+		</frames>
+	</Frame>-->
+    
+
+</Ui>

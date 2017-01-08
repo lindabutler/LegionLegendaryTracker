@@ -1,0 +1,18 @@
+
+Track kills for:
+   Dungeon bosses (normal, heroic, mythic)
+    Raid bosses
+    World bosses
+    Emissary Caches (rewarded after completing 4 world quests)
+    Arena wins
+    Rated/Unrated Battleground wins
+    PvP Strongboxes
+    Mythic+ Weekly Caches
+    mythic+ caches end of run
+    Rare mobs
+    Treasures (legion)
+
+saved statistics
+reset button
+
+send number of sttempts taken back to databse (per individual)
