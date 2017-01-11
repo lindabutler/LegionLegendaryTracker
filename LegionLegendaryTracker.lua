@@ -1,10 +1,19 @@
-﻿
+local temp
+local normalWrath
+local normalThicket
+local normalNeth
+local normalValor
+local normalViolet1
+local normalViolet2
+--local normalVault
+--local normalBlackRook
+--local normalMaw
+local normalDungeonBossCurrent
 
 LegionLegendaryTracker = {}
 if not LLT_settings then
 	LLT_settings = {}
 	LLT_settings.gui = "show"
-
 end
 
 function LegionLegendaryTracker:OnLoad(self)
@@ -21,6 +30,10 @@ function LegionLegendaryTracker:OnEvent(self, event, ...)
 	if (event == "PLAYER_ENTERING_WORLD") then
 		LegionLegendaryTracker:frametoggle()
 	end
+    if (event == "COMBAT_LOG_EVENT_UNFILTERED") then
+         _G["LLT_F2_Text"]:SetText("dungeon bosses (normal): "..normalDungeonBossCurrent)
+         _G["LLT_F18_Text"]:SetText("total chances: "..temp)
+    end
 end
 
 function LegionLegendaryTracker:processname(unitname)
@@ -96,6 +109,67 @@ function LegionLegendaryTracker:frametoggle()
         frame19:Hide()
         frame20:Hide()
     end
+end
+
+function LegionLegendaryTracker:startInitialCount()
+    --pomhealcount = 0
+	--_G["pomtracker3_Text"]:SetText("Amount Healed: 0")
+    print ("breakpoint1")
+    print (temp)
+    temp = 5
+    print ("breakpoint2")
+    print (temp)
+    --calculate normal boss kills (retrieve data from Statistics panel)
+    normalWrath = LegionLegendaryTracker:GetStatisticId("Legion", "Wrath of Azshara kills (Normal Eye of Azshara)")
+    normalWrath = GetStatistic(normalWrath)
+    normalThicket = LegionLegendaryTracker:GetStatisticId("Legion", "Shade of Xavius kills (Normal Darkheart Thicket)")
+    normalThicket = GetStatistic(normalThicket)
+    normalNeth = LegionLegendaryTracker:GetStatisticId("Legion", "Dargrul kills (Normal Neltharion's Lair)")
+    normalNeth = GetStatistic(normalNeth)
+    normalValor = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Normal Halls of Valor)")
+    normalValor = GetStatistic(normalValor)
+    normalViolet1 = LegionLegendaryTracker:GetStatisticId("Legion", "Fel Lord Betrug kills (Normal Assault on Violet Hold)")
+    normalViolet1 = GetStatistic(normalViolet1)
+--    normalViolet2 = LegionLegendaryTracker:GetStatisticId("Legion", "Sael'orn kills (Normal Assault on Violet Hold)")
+--    normalViolet2 = GetStatistic(normalViolet2)
+--    normalVault = LegionLegendaryTracker:GetStatisticId("Legion", "Cordana Felsong kills (Normal Vault of the Wardens)")
+--    normalVault = GetStatistic(normalVault)
+--    normalBlackRook = LegionLegendaryTracker:GetStatisticId("Legion", "Kur'talos Ravencrest defeats (Normal Black Rook Hold)")
+--    normalBlackRook = GetStatistic(normalBlackRook)
+--    normalMaw  = LegionLegendaryTracker:GetStatisticId("Legion", "Helya defeats (Normal Maw of Souls)")
+--    normalMaw = GetStatistic(normalMaw)
+    
+    --TOFIX: empty statistic ("--" in game) causes crash.
+    
+    
+    
+    normalDungeonBossCurrent = (normalWrath + normalThicket + normalNeth + normalValor + normalViolet1) -- + normalViolet2) -- + normalVault + normalBlackRook + normalMaw)
+    print("sael'orn kills :", normalViolet2)
+    print("normalDungeonBossCurrent :", normalDungeonBossCurrent)
+    print("normalDungeonBoss_Initial :", normalDungeonBoss_Initial)
+    
+    
+end
+
+function LegionLegendaryTracker:GetStatisticId(CategoryTitle, StatisticTitle)
+	local str = ""
+	for _, CategoryId in pairs(GetStatisticsCategoryList()) do
+		local Title, ParentCategoryId, Something
+		Title, ParentCategoryId, Something = GetCategoryInfo(CategoryId)
+		
+		if Title == CategoryTitle then
+			local i
+			local statisticCount = GetCategoryNumAchievements(CategoryId)
+			for i = 1, statisticCount do
+				local IDNumber, Name, Points, Completed, Month, Day, Year, Description, Flags, Image, RewardText
+				IDNumber, Name, Points, Completed, Month, Day, Year, Description, Flags, Image, RewardText = GetAchievementInfo(CategoryId, i)
+				if Name == StatisticTitle then
+					return IDNumber
+				end
+			end
+		end
+	end
+	return -1
 end
 
 
