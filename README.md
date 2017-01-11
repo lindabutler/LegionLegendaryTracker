@@ -7,8 +7,8 @@ Tracks drop chances from:
     Raid bosses (LFR, normal, heroic, mythic)   
     World bosses                                
     Emissary Caches                             
-    Arena wins                                   
-    Battleground Wins                            
+    Rated Arena wins                                   
+    Rated and Unrated Battleground Wins                            
     PvP Strongboxes                              
     Mythic+ Weekly Caches                         
     mythic+ chests at the end of the run (1/2/3)  
