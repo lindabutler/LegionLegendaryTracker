@@ -11,7 +11,7 @@ Tracks drop chances from:
     Rated and Unrated Battleground Wins                            
     PvP Strongboxes                              
     Mythic+ Weekly Caches                         
-    mythic+ chests at the end of the run (1/2/3)  
+    Mythic+ chests at the end of the run (1/2/3)  
     Rare mobs (legion)                                   
     Treasures (legion)                            
 
