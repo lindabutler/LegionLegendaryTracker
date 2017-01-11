@@ -1,5 +1,5 @@
 # LegionLegendaryTracker
-World of Warcraft Addon for tracking legendary drop chances in Legion.
+World of Warcraft Addon for tracking legendary drop chances (how often you could have gotten a legendary item) in Legion.
 
 Tracks drop chances from:
 
