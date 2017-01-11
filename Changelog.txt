@@ -1,1 +1,2 @@
 Jan 1, 2017 - Addon created.
+Jan 11, 2017 - UI improvement; initial Statistics access accomplished for normal bosses.
