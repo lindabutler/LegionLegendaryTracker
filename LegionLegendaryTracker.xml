@@ -1,4 +1,4 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
 	<Script file="LegionLegendaryTracker.lua"/>
 
 	<Frame name="LLT_GeneralScripts" hidden="true">
@@ -525,12 +525,12 @@
         </Scripts> 
     </Frame>
     
-    <Frame name="LLT_F18" inherits="LLT_mainFrame" hidden="true">
+    <Frame name="LLT_F17" inherits="LLT_mainFrame" hidden="true">
         <Size>
             <AbsDimension x="400" y="25"/>
         </Size>
         <Anchors>
-            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F17">
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F16">
                 <Offset>
                     <AbsDimension x="0" y="0"/>
                 </Offset>
@@ -557,6 +557,46 @@
         </Scripts> 
     </Frame>
     
+    <Frame name="LLT_F18" inherits="LLT_mainFrame" hidden="true">
+        <Size>
+            <AbsDimension x="400" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F17">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Total Chances: 0 ">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+<!--            <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="0">
+                    <FontHeight val="12"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="CENTER">
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>-->
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
+            </OnLoad>
+        </Scripts> 
+    </Frame>
+    
     <Frame name="LLT_F19" inherits="LLT_mainFrame" hidden="true">
         <Size>
             <AbsDimension x="400" y="25"/>
@@ -565,7 +605,7 @@
             <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F18">
                 <Offset>
                     <AbsDimension x="0" y="0"/>
-                </Offset>
+                </Offset>   
             </Anchor>
         </Anchors>
         <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
@@ -574,7 +614,7 @@
             <Layer level="ARTWORK">
                 <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text=" ">
                     <FontHeight val="12"/>
-                    <Anchors>
+                    <Anchors>n
                         <Anchor point="LEFT" relativePoint="LEFT">
                         </Anchor>
                     </Anchors>
@@ -588,79 +628,35 @@
             </OnLoad>
         </Scripts> 
     </Frame>
+    
+    
+    
     
     <Frame name="LLT_F20" inherits="LLT_mainFrame" hidden="true">
-        <Size>
-            <AbsDimension x="400" y="25"/>
-        </Size>
-        <Anchors>
-            <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F19">
-                <Offset>
-                    <AbsDimension x="0" y="0"/>
-                </Offset>
-            </Anchor>
-        </Anchors>
-        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
-        </Backdrop>
-        <Layers>
-            <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text=" ">
-                    <FontHeight val="12"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativePoint="LEFT">
-                        </Anchor>
-                    </Anchors>
-                    <Color r="1" g="1" b="1" a="1" />
-                </FontString>
-            </Layer>
-        </Layers>
-        <Scripts>
-            <OnLoad>
-                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.6);
-            </OnLoad>
-        </Scripts> 
-    </Frame>
-    
-    
-    
-    
-<!--	<Frame name="LLT_EX" inherits="LLT_mainFrame" hidden="true">
 		<Size>
 			<AbsDimension x="100" y="200"/>
 		</Size>
 		<Anchors>
-			<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F2">
+			<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="LLT_F19">
 				<Offset>
 					<AbsDimension x="0" y="-5"/>
 				</Offset>
 			</Anchor>
 		</Anchors>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="$parent_Text" inherits="GameFontHighlightSmall"  text="Statistics: 0">
-					<Anchors>
-						<Anchor point="CENTER" relativePoint="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
 		<frames>
-			<Button name="$parent_Button1" inherits="UIPanelButtonTemplate" text="Reset" id="20">
+			<Button name="$parent_Button1" inherits="UIPanelButtonTemplate" text="Start Tracking (Reset)" id="20">
 				<Size>
-					<AbsDimension x="70" y="15"/>
+					<AbsDimension x="180" y="15"/>
 				</Size>
 					<Anchors>
-						<Anchor point="RIGHT" relativePoint="LEFT" relativeTo="LLT_F3_Text">
+						<Anchor point="LEFT" relativePoint="LEFT" relativeTo="LLT_F19"> 
 							<Offset>
 								<AbsDimension x="-1" y="0"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
 				<Scripts>
+                	<OnClick>LegionLegendaryTracker:startInitialCount()</OnClick>
 				</Scripts>
 			</Button>
 		</frames>
