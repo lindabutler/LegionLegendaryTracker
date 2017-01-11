@@ -5,17 +5,6 @@
 ## Notes: Tracks chances you've had for a legendary to drop.
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
-## SavedVariablesPerCharacter: normalDungeonBoss,heroicDungeonBoss,mythicDungeonBoss,LFRRaidBoss,normalRaidBoss,heroicRaidBoss,mythicRaidBoss,legionWorldBosses,emissaryCaches,arenaWins,battlegroundWins,PvPStrongboxes,mythicPlusWeeklyCache,mythicPlusChests,legionRareMobs,legionTreasures,totalChancesCurrent
-normalDungeonBoss, heroicDungeonBoss, mythicDungeonBoss,
-LFRRaidBoss, normalRaidBoss, heroicRaidBoss, mythicRaidBoss,
-legionWorldBosses,
-emissaryCaches,
-arenaWins,
-battlegroundWins,
-PvPStrongboxes,
-mythicPlusWeeklyCache,
-mythicPlusChests,
-legionRareMobs,
-legionTreasures,
+## SavedVariablesPerCharacter: normalDungeonBoss_Initial,heroicDungeonBoss_Initial,mythicDungeonBoss_Initial,LFRRaidBoss_Initial,normalRaidBoss_Initial,heroicRaidBoss_Initial,mythicRaidBoss_Initial,legionWorldBosses_Initial,emissaryCaches_Initial,ratedArenaWins_Initial,battlegroundWins_Initial,PvPStrongboxes_Initial,mythicPlusWeeklyCache_Initial,mythicPlusChests_Initial,legionRareMobs_Initial,legionTreasures_Initial,totalChancesCurrent_Initial
 LegionLegendaryTracker.lua
 LegionLegendaryTracker.xml
