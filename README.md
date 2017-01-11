@@ -2,6 +2,7 @@
 World of Warcraft Addon for tracking legendary drop chances in Legion.
 
 Tracks drop chances from:
+
     Dungeon bosses (normal, heroic, mythic)      
     Raid bosses (LFR, normal, heroic, mythic)   
     World bosses                                
