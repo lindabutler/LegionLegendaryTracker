@@ -1,18 +1,23 @@
 
 Track kills for:
-   Dungeon bosses (normal, heroic, mythic)
-    Raid bosses
-    World bosses
-    Emissary Caches (rewarded after completing 4 world quests)
-    Arena wins
-    Rated/Unrated Battleground wins
-    PvP Strongboxes
-    Mythic+ Weekly Caches
-    mythic+ caches end of run
-    Rare mobs
-    Treasures (legion)
+   Dungeon bosses (normal, heroic, mythic)   // Statistics only counts end boss kills on all three difficulties. ex: Cordana
+    Raid bosses                              // Statistics counts each boss on all 4 difficulty levels World bosses
+    World bosses                             //track through WQs?
+    Emissary Caches (rewarded after completing 4 world quests) //WQ Trigger?
+    Rated Arena wins                         //statistics
+    Rated/Unrated Battleground wins          //statistics
+    PvP Strongboxes                          //??
+    Mythic+ Weekly Caches                    //??
+    mythic+ chests end of run                //??
+    Rare mobs                                //monsterID? some way of knowing wheteher you've killed it before (silver)
+    Treasures (legion)                       //id? handynotes knows what treasures you've found... 
 
-saved statistics
-reset button
+Also should show total chances on current track count.
 
-send number of sttempts taken back to databse (per individual)
+UI Interface Buttons: 
+   save button with box/dropdown to set which legendary number this is? 
+     and checkbox for partial count (chances before addon installed). 
+     reset button (are you sure?) 
+     chose what you're tracking (so you don't show normals to 110s, arenas to those who never pvp, etc.)
+
+Database: send number of attempts taken back to database (per individual category; give it to mathy people?)
