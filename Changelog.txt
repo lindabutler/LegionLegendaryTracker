@@ -1,2 +1,3 @@
 Jan 1, 2017 - Addon created.
 Jan 11, 2017 - UI improvement; initial Statistics access accomplished for normal bosses.
+Jan 19, 2017 - UI improvement; dungeon bosses finished; raidbosses template done but only LFR implemented.
