@@ -1,14 +1,47 @@
-local temp
-local normalWrath
-local normalThicket
-local normalNeth
-local normalValor
-local normalViolet1
-local normalViolet2
---local normalVault
---local normalBlackRook
---local normalMaw
+--local dungeon variables
+local dungeonWrath
+local dungeonThicket
+local dungeonNeth
+local dungeonValor
+local dungeonViolet1
+local dungeonViolet2
+local dungeonVault
+local dungeonBlackRook
+local dungeonMaw
+local dungeonArc
+local dungeonCourt
+--local dungeonKara
+
+--local raid variables
+local raidNythendra
+local raidElerethe
+local raidIlgynoth
+local raidUrsoc
+local raidDragons
+local raidCenarius
+local raidXavius
+local raidOdyn
+local raidGuarm
+local raidHelya
+local raidSkorpyron
+local raidChronomatic
+local raidTrilliax
+local raidSpellblade
+local raidStarAugur
+local raidHighBot
+local raidTichon
+local raidKrosus
+local raidGrandMag
+local raidGuldan
+
+--local totals
 local normalDungeonBossCurrent
+local heroicDungeonBossCurrent
+local mythicDungeonBossCurrent
+local LFRRaidBossCurrent
+local normalRaidBossCurrent
+
+
 
 LegionLegendaryTracker = {}
 if not LLT_settings then
@@ -32,6 +65,9 @@ function LegionLegendaryTracker:OnEvent(self, event, ...)
 	end
     if (event == "COMBAT_LOG_EVENT_UNFILTERED") then
          _G["LLT_F2_Text"]:SetText("dungeon bosses (normal): "..normalDungeonBossCurrent)
+         _G["LLT_F3_Text"]:SetText("dungeon bosses (heroic): "..heroicDungeonBossCurrent)
+         _G["LLT_F4_Text"]:SetText("dungeon bosses (mythic): "..mythicDungeonBossCurrent)
+         _G["LLT_F5_Text"]:SetText("raid bosses (LFR): "..LFRRaidBossCurrent)
          _G["LLT_F18_Text"]:SetText("total chances: "..temp)
     end
 end
@@ -114,41 +150,194 @@ end
 function LegionLegendaryTracker:startInitialCount()
     --pomhealcount = 0
 	--_G["pomtracker3_Text"]:SetText("Amount Healed: 0")
+
+    LegionLegendaryTracker:findDungeonBossStatistics()
+    LegionLegendaryTracker:findRaidBossStatistics() 
     print ("breakpoint1")
-    print (temp)
-    temp = 5
-    print ("breakpoint2")
-    print (temp)
+    
+    normalDungeonBoss_Initial = normalDungeonBossCurrent
+    heroicDungeonBoss_Initial = heroicDungeonBossCurrent
+    mythicDungeonBoss_Initial = mythicDungeonBossCurrent
+    LFRRaidBoss_Initial = LFRRaidBossCurrent
+    --print("normalDungeonBoss_Initial :", normalDungeonBoss_Initial)
+    --print("heroicDungeonBoss_Initial :", heroicDungeonBoss_Initial)
+    --print("mythicDungeonBoss_Initial :", mythicDungeonBoss_Initial)
+end
+
+function LegionLegendaryTracker:findRaidBossStatistics()
+    --calculate normal raid boss kills (retrieve data from Statistics panel)
+    raidNythendra = LegionLegendaryTracker:GetStatisticId("Legion", "Nythendra kills (Raid Finder Emerald Nightmare)")
+    raidNythendra = GetStatistic(raidNythendra)
+    raidElerethe = LegionLegendaryTracker:GetStatisticId("Legion", "Elerethe Renferal kills (Raid Finder Emerald Nightmare)")
+    raidElerethe = GetStatistic(raidElerethe)
+    raidIlgynoth = LegionLegendaryTracker:GetStatisticId("Legion", "Il'gynoth kills (Raid Finder Emerald Nightmare)")
+    raidIlgynoth = GetStatistic(raidIlgynoth)
+    raidUrsoc = LegionLegendaryTracker:GetStatisticId("Legion", "Ursoc kills (Raid Finder Emerald Nightmare)")
+    raidUrsoc = GetStatistic(raidUrsoc)
+    raidDragons = LegionLegendaryTracker:GetStatisticId("Legion", "Dragons of Nightmare kills (Raid Finder Emerald Nightmare)")
+    raidDragons = GetStatistic(raidDragons)
+    raidCenarius = LegionLegendaryTracker:GetStatisticId("Legion", "Cenarius redemptions (Raid Finder Emerald Nightmare)")
+    raidCenarius = GetStatistic(raidCenarius)
+    raidXavius = LegionLegendaryTracker:GetStatisticId("Legion", "Xavius kills (Raid Finder Emerald Nightmare)")
+    raidXavius = GetStatistic(raidXavius)
+    raidOdyn = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Raid Finder Trial of Valor)")
+    raidOdyn = GetStatistic(raidOdyn)
+    raidGuarm = LegionLegendaryTracker:GetStatisticId("Legion", "Guarm kills (Raid Finder Trial of Valor)")
+    raidGuarm = GetStatistic(raidGuarm)
+    raidHelya = LegionLegendaryTracker:GetStatisticId("Legion", "Helya kills (Raid Finder Trial of Valor)")
+    raidHelya = GetStatistic(raidHelya)
+    raidSkorpyron = LegionLegendaryTracker:GetStatisticId("Legion", "Skorpyron kills (Raid Finder Nighthold)")
+    raidSkorpyron = GetStatistic(raidSkorpyron)
+    raidChronomatic = LegionLegendaryTracker:GetStatisticId("Legion", "Chronomatic Anomaly kills (Raid Finder Nighthold)")
+    raidChronomatic = GetStatistic(raidChronomatic)
+    raidTrilliax = LegionLegendaryTracker:GetStatisticId("Legion", "Trilliax kills (Raid Finder Nighthold)")
+    raidTrilliax = GetStatistic(raidTrilliax)
+    raidSpellblade = LegionLegendaryTracker:GetStatisticId("Legion", "Spellblade Aluriel kills (Raid Finder Nighthold)")
+    raidSpellblade = GetStatistic(raidSpellblade)
+    raidStarAugur = LegionLegendaryTracker:GetStatisticId("Legion", "Star Augur Etraeus kills (Raid Finder Nighthold)")
+    raidStarAugur = GetStatistic(raidStarAugur)
+    raidHighBot = LegionLegendaryTracker:GetStatisticId("Legion", "High Botanist Tel'arn kills (Raid Finder Nighthold)")
+    raidHighBot = GetStatistic(raidHighBot)
+    raidTichon = LegionLegendaryTracker:GetStatisticId("Legion", "Tichondrius kills (Raid Finder Nighthold)")
+    raidTichon = GetStatistic(raidTichon)
+    raidKrosus = LegionLegendaryTracker:GetStatisticId("Legion", "Krosus kills (Raid Finder Nighthold)")
+    raidKrosus = GetStatistic(raidKrosus)
+    raidGrandMag = LegionLegendaryTracker:GetStatisticId("Legion", "Grand Magistrix Elisande kills (Raid Finder Nighthold)")
+    raidGrandMag = GetStatistic(raidGrandMag)
+    raidGuldan = LegionLegendaryTracker:GetStatisticId("Legion", "Gul'dan kills (Raid Finder Nighthold)")
+    raidGuldan = GetStatistic(raidGuldan)
+    --if any kills are "--" (nil), set their value to zero
+    if (raidNythendra == "--")      then raidNythendra = 0      end
+    if (raidElerethe == "--")       then raidElerethe = 0       end
+    if (raidIlgynoth == "--")       then raidIlgynoth = 0       end
+    if (raidUrsoc == "--")          then raidUrsoc = 0          end
+    if (raidDragons == "--")        then raidDragons = 0        end
+    if (raidCenarius == "--")       then raidCenarius = 0       end
+    if (raidXavius == "--")         then raidXavius = 0         end
+    if (raidOdyn == "--")           then raidOdyn = 0           end
+    if (raidGuarm == "--")          then raidGuarm = 0          end
+    if (raidHelya == "--")          then raidHelya = 0          end
+    if (raidSkorpyron == "--")      then raidSkorpyron = 0      end
+    if (raidChronomatic == "--")    then raidChronomatic = 0    end
+    if (raidTrilliax == "--")       then raidTrilliax = 0       end
+    if (raidSpellblade == "--")     then raidSpellblade = 0     end
+    if (raidStarAugur == "--")      then raidStarAugur = 0      end
+    if (raidHighBot == "--")        then raidHighBot = 0        end
+    if (raidTichon == "--")         then raidTichon = 0         end
+    if (raidKrosus == "--")         then raidKrosus = 0         end
+    if (raidGrandMag == "--")       then raidGrandMag = 0       end
+    if (raidGuldan == "--")         then raidGuldan = 0         end
+    --add up total LFR raidboss kills 
+    LFRRaidBossCurrent = (raidNythendra + raidElerethe + raidIlgynoth + raidUrsoc + raidDragons + raidCenarius + raidXavius + raidOdyn + raidGuarm + raidHelya + raidSkorpyron + raidChronomatic + raidTrilliax + raidSpellblade + raidStarAugur + raidHighBot + raidTichon + raidKrosus + raidGrandMag + raidGuldan)
+    print("LFRRaidBossCurrent :", LFRRaidBossCurrent)
+end
+
+
+function LegionLegendaryTracker:findDungeonBossStatistics() 
     --calculate normal boss kills (retrieve data from Statistics panel)
-    normalWrath = LegionLegendaryTracker:GetStatisticId("Legion", "Wrath of Azshara kills (Normal Eye of Azshara)")
-    normalWrath = GetStatistic(normalWrath)
-    normalThicket = LegionLegendaryTracker:GetStatisticId("Legion", "Shade of Xavius kills (Normal Darkheart Thicket)")
-    normalThicket = GetStatistic(normalThicket)
-    normalNeth = LegionLegendaryTracker:GetStatisticId("Legion", "Dargrul kills (Normal Neltharion's Lair)")
-    normalNeth = GetStatistic(normalNeth)
-    normalValor = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Normal Halls of Valor)")
-    normalValor = GetStatistic(normalValor)
-    normalViolet1 = LegionLegendaryTracker:GetStatisticId("Legion", "Fel Lord Betrug kills (Normal Assault on Violet Hold)")
-    normalViolet1 = GetStatistic(normalViolet1)
---    normalViolet2 = LegionLegendaryTracker:GetStatisticId("Legion", "Sael'orn kills (Normal Assault on Violet Hold)")
---    normalViolet2 = GetStatistic(normalViolet2)
---    normalVault = LegionLegendaryTracker:GetStatisticId("Legion", "Cordana Felsong kills (Normal Vault of the Wardens)")
---    normalVault = GetStatistic(normalVault)
---    normalBlackRook = LegionLegendaryTracker:GetStatisticId("Legion", "Kur'talos Ravencrest defeats (Normal Black Rook Hold)")
---    normalBlackRook = GetStatistic(normalBlackRook)
---    normalMaw  = LegionLegendaryTracker:GetStatisticId("Legion", "Helya defeats (Normal Maw of Souls)")
---    normalMaw = GetStatistic(normalMaw)
+    dungeonWrath = LegionLegendaryTracker:GetStatisticId("Legion", "Wrath of Azshara kills (Normal Eye of Azshara)")
+    dungeonWrath = GetStatistic(dungeonWrath)
+    dungeonThicket = LegionLegendaryTracker:GetStatisticId("Legion", "Shade of Xavius kills (Normal Darkheart Thicket)")
+    dungeonThicket = GetStatistic(dungeonThicket)
+    dungeonNeth = LegionLegendaryTracker:GetStatisticId("Legion", "Dargrul kills (Normal Neltharion's Lair)")
+    dungeonNeth = GetStatistic(dungeonNeth)
+    dungeonValor = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Normal Halls of Valor)")
+    dungeonValor = GetStatistic(dungeonValor)
+    dungeonViolet1 = LegionLegendaryTracker:GetStatisticId("Legion", "Fel Lord Betrug kills (Normal Assault on Violet Hold)")
+    dungeonViolet1 = GetStatistic(dungeonViolet1)
+    dungeonViolet2 = LegionLegendaryTracker:GetStatisticId("Legion", "Sael'orn kills (Normal Assault on Violet Hold)")
+    dungeonViolet2 = GetStatistic(dungeonViolet2)
+    dungeonVault = LegionLegendaryTracker:GetStatisticId("Legion", "Cordana Felsong kills (Normal Vault of the Wardens)")
+    dungeonVault = GetStatistic(dungeonVault)
+    dungeonBlackRook = LegionLegendaryTracker:GetStatisticId("Legion", "Kur'talos Ravencrest defeats (Normal Black Rook Hold)")
+    dungeonBlackRook = GetStatistic(dungeonBlackRook)
+    dungeonMaw  = LegionLegendaryTracker:GetStatisticId("Legion", "Helya defeats (Normal Maw of Souls)")
+    dungeonMaw = GetStatistic(dungeonMaw)
+    --if any kills are "--" or nil, set their value to zero
+    if (dungeonWrath == "--")       then dungeonWrath = 0       end
+    if (dungeonThicket == "--")     then dungeonThicket = 0     end
+    if (dungeonNeth == "--")        then dungeonNeth = 0        end
+    if (dungeonValor == "--")       then dungeonValor = 0       end
+    if (dungeonViolet1 == "--")     then dungeonViolet1 = 0     end
+    if (dungeonViolet2 == "--")     then dungeonViolet2 = 0     end
+    if (dungeonVault == "--")       then dungeonVault = 0       end
+    if (dungeonBlackRook == "--")   then dungeonBlackRook = 0   end
+    if (dungeonMaw == "--")         then dungeonMaw = 0         end
+    --add up total normal boss kills (number of times end boss is killed * number of bosses in instance)
+    normalDungeonBossCurrent = (dungeonWrath*3 + dungeonThicket*4 + dungeonNeth*4 + dungeonValor*5 + dungeonViolet1*3 + dungeonViolet2*3 + dungeonVault*5 + dungeonBlackRook*4 + dungeonMaw*3)
+    --print("normalDungeonBossCurrent :", normalDungeonBossCurrent)
     
-    --TOFIX: empty statistic ("--" in game) causes crash.
+    --calculate heroic boss kills (retrieve data from Statistics panel)
+    dungeonWrath = LegionLegendaryTracker:GetStatisticId("Legion", "Wrath of Azshara kills (Heroic Eye of Azshara)")
+    dungeonWrath = GetStatistic(dungeonWrath)
+    dungeonThicket = LegionLegendaryTracker:GetStatisticId("Legion", "Shade of Xavius kills (Heroic Darkheart Thicket)")
+    dungeonThicket = GetStatistic(dungeonThicket)
+    dungeonNeth = LegionLegendaryTracker:GetStatisticId("Legion", "Dargrul kills (Heroic Neltharion's Lair)")
+    dungeonNeth = GetStatistic(dungeonNeth)
+    dungeonValor = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Heroic Halls of Valor)")
+    dungeonValor = GetStatistic(dungeonValor)
+    dungeonViolet1 = LegionLegendaryTracker:GetStatisticId("Legion", "Fel Lord Betrug kills (Heroic Assault on Violet Hold)")
+    dungeonViolet1 = GetStatistic(dungeonViolet1)
+    dungeonViolet2 = LegionLegendaryTracker:GetStatisticId("Legion", "Sael'orn kills (Heroic Assault on Violet Hold)")
+    dungeonViolet2 = GetStatistic(dungeonViolet2)
+    dungeonVault = LegionLegendaryTracker:GetStatisticId("Legion", "Cordana Felsong kills (Heroic Vault of the Wardens)")
+    dungeonVault = GetStatistic(dungeonVault)
+    dungeonBlackRook = LegionLegendaryTracker:GetStatisticId("Legion", "Kur'talos Ravencrest defeats (Heroic Black Rook Hold)")
+    dungeonBlackRook = GetStatistic(dungeonBlackRook)
+    dungeonMaw  = LegionLegendaryTracker:GetStatisticId("Legion", "Helya defeats (Heroic Maw of Souls)")
+    dungeonMaw = GetStatistic(dungeonMaw)
+    --if any kills are "--" or nil, set their value to zero
+    if (dungeonWrath == "--")       then dungeonWrath = 0       end
+    if (dungeonThicket == "--")     then dungeonThicket = 0     end
+    if (dungeonNeth == "--")        then dungeonNeth = 0        end
+    if (dungeonValor == "--")       then dungeonValor = 0       end
+    if (dungeonViolet1 == "--")     then dungeonViolet1 = 0     end
+    if (dungeonViolet2 == "--")     then dungeonViolet2 = 0     end
+    if (dungeonVault == "--")       then dungeonVault = 0       end
+    if (dungeonBlackRook == "--")   then dungeonBlackRook = 0   end
+    if (dungeonMaw == "--")         then dungeonMaw = 0         end
+    --add up total heroic boss kills (number of times end boss is killed * number of bosses in instance)
+    heroicDungeonBossCurrent = (dungeonWrath*3 + dungeonThicket*4 + dungeonNeth*4 + dungeonValor*5 + dungeonViolet1*3 + dungeonViolet2*3 + dungeonVault*5 + dungeonBlackRook*4 + dungeonMaw*3)
+    --print("heroicDungeonBossCurrent :", heroicDungeonBossCurrent)
     
-    
-    
-    normalDungeonBossCurrent = (normalWrath + normalThicket + normalNeth + normalValor + normalViolet1) -- + normalViolet2) -- + normalVault + normalBlackRook + normalMaw)
-    print("sael'orn kills :", normalViolet2)
-    print("normalDungeonBossCurrent :", normalDungeonBossCurrent)
-    print("normalDungeonBoss_Initial :", normalDungeonBoss_Initial)
-    
-    
+    --calculate mythic boss kills (retrieve data from Statistics panel)
+    dungeonWrath = LegionLegendaryTracker:GetStatisticId("Legion", "Wrath of Azshara kills (Mythic Eye of Azshara)")
+    dungeonWrath = GetStatistic(dungeonWrath)
+    dungeonThicket = LegionLegendaryTracker:GetStatisticId("Legion", "Shade of Xavius kills (Mythic Darkheart Thicket)")
+    dungeonThicket = GetStatistic(dungeonThicket)
+    dungeonNeth = LegionLegendaryTracker:GetStatisticId("Legion", "Dargrul kills (Mythic Neltharion's Lair)")
+    dungeonNeth = GetStatistic(dungeonNeth)
+    dungeonValor = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Mythic Halls of Valor)")
+    dungeonValor = GetStatistic(dungeonValor)
+    dungeonViolet1 = LegionLegendaryTracker:GetStatisticId("Legion", "Fel Lord Betrug kills (Mythic Assault on Violet Hold)")
+    dungeonViolet1 = GetStatistic(dungeonViolet1)
+    dungeonViolet2 = LegionLegendaryTracker:GetStatisticId("Legion", "Sael'orn kills (Mythic Assault on Violet Hold)")
+    dungeonViolet2 = GetStatistic(dungeonViolet2)
+    dungeonVault = LegionLegendaryTracker:GetStatisticId("Legion", "Cordana Felsong kills (Mythic Vault of the Wardens)")
+    dungeonVault = GetStatistic(dungeonVault)
+    dungeonBlackRook = LegionLegendaryTracker:GetStatisticId("Legion", "Kur'talos Ravencrest defeats (Mythic Black Rook Hold)")
+    dungeonBlackRook = GetStatistic(dungeonBlackRook)
+    dungeonMaw  = LegionLegendaryTracker:GetStatisticId("Legion", "Helya defeats (Mythic Maw of Souls)")
+    dungeonMaw = GetStatistic(dungeonMaw)
+    dungeonArc  = LegionLegendaryTracker:GetStatisticId("Legion", "Advisor Vandros kills (Mythic Arcway)")
+    dungeonArc = GetStatistic(dungeonArc)
+    dungeonCourt  = LegionLegendaryTracker:GetStatisticId("Legion", "Advisor Melandrus kills (Mythic Court of Stars)")
+    dungeonCourt = GetStatistic(dungeonCourt)
+    --if any kills are "--" or nil, set their value to zero
+    if (dungeonWrath == "--")       then dungeonWrath = 0       end
+    if (dungeonThicket == "--")     then dungeonThicket = 0     end
+    if (dungeonNeth == "--")        then dungeonNeth = 0        end
+    if (dungeonValor == "--")       then dungeonValor = 0       end
+    if (dungeonViolet1 == "--")     then dungeonViolet1 = 0     end
+    if (dungeonViolet2 == "--")     then dungeonViolet2 = 0     end
+    if (dungeonVault == "--")       then dungeonVault = 0       end
+    if (dungeonBlackRook == "--")   then dungeonBlackRook = 0   end
+    if (dungeonMaw == "--")         then dungeonMaw = 0         end
+    if (dungeonArc == "--")         then dungeonArc = 0         end
+    if (dungeonCourt == "--")       then dungeonCourt = 0       end
+    --add up total heroic boss kills (number of times end boss is killed * number of bosses in instance)
+    mythicDungeonBossCurrent = (dungeonWrath*3 + dungeonThicket*4 + dungeonNeth*4 + dungeonValor*5 + dungeonViolet1*3 + dungeonViolet2*3 + dungeonVault*5 + dungeonBlackRook*4 + dungeonMaw*3 + dungeonArc*5 + dungeonCourt*3)
+    --print("mythicDungeonBossCurrent :", mythicDungeonBossCurrent)
 end
 
 function LegionLegendaryTracker:GetStatisticId(CategoryTitle, StatisticTitle)
