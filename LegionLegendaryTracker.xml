@@ -60,7 +60,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Dungeon Bosses (Normal): ">
+				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Dungeon Bosses (Normal): ">
 					 <FontHeight val="12"/>
 					<Anchors>
 						<Anchor point="LEFT" relativePoint="LEFT">
@@ -92,7 +92,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Dungeon Bosses (Heroic): ">
+				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Dungeon Bosses (Heroic): ">
 					 <FontHeight val="12"/>
 					<Anchors>
 						<Anchor point="LEFT" relativePoint="LEFT">
@@ -124,7 +124,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Dungeon Bosses (Mythic): ">
+				<FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Dungeon Bosses (Mythic): ">
 					 <FontHeight val="12"/>
 					<Anchors>
 						<Anchor point="LEFT" relativePoint="LEFT">
@@ -156,7 +156,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (LFR): ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Raid Bosses (LFR): ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -188,7 +188,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (Normal): ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Raid Bosses (Normal): ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -220,7 +220,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (Heroic): ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Raid Bosses (Heroic): ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -252,7 +252,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Raid Bosses (Mythic): ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Raid Bosses (Mythic): ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -284,7 +284,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="World Raid Bosses: ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   World Raid Bosses: ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -316,7 +316,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Emissary Caches: ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Emissary Caches: ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -348,7 +348,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Arena Wins: ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Arena Wins: ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -380,7 +380,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Battleground Wins: ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Battleground Wins: ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -412,7 +412,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="PvP Strongboxes: ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   PvP Strongboxes: ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -444,7 +444,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Mythic+ Weekly Cache: ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Mythic+ Weekly Cache: ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -476,7 +476,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Mythic+ Chests (1/2/3): ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Mythic+ Chests (1/2/3): ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -508,7 +508,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Legion Rare Mobs (first kill): ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Legion Rare Mobs (first kill): ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -540,7 +540,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Legion World Treasure Chests): ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Legion World Treasure Chests): ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -572,7 +572,7 @@
         </Backdrop>
         <Layers>
             <Layer level="ARTWORK">
-                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="Total Chances: 0 ">
+                <FontString name="$parent_Text" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF" text="   Total Chances: 0 ">
                     <FontHeight val="12"/>
                     <Anchors>
                         <Anchor point="LEFT" relativePoint="LEFT">
@@ -587,7 +587,8 @@
                         </Anchor>
                     </Anchors>
                     <Color r="1" g="1" b="1" a="1" />
-                </FontString>-->
+                </FontString>
+-->
             </Layer>
         </Layers>
         <Scripts>
@@ -608,6 +609,25 @@
                 </Offset>   
             </Anchor>
         </Anchors>
+       
+        <frames>
+			<Button name="$parent_Button2" inherits="UIPanelButtonTemplate" text="Option2" id="20">
+				<Size>
+					<AbsDimension x="180" y="15"/>
+				</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="RIGHT" relativeTo="LLT_F19"> 
+							<Offset>
+								<AbsDimension x="-1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				<Scripts>
+                	--do something like: <OnClick>LegionLegendaryTracker:startInitialCount()</OnClick>
+				</Scripts>
+			</Button>
+		</frames> --
+        
         <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
         </Backdrop>
         <Layers>
