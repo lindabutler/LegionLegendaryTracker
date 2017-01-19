@@ -21,3 +21,8 @@ UI Interface Buttons:
      chose what you're tracking (so you don't show normals to 110s, arenas to those who never pvp, etc.)
 
 Database: send number of attempts taken back to database (per individual category; give it to mathy people?)
+
+Caveats: 
+    assumes if you killed a dungeon end boss, you killed all the other boses in the dungeon
+    not tracking mythic return to karazhan at the moment since mount runs won't trigger and many bosses get skipped
+    blingatron 6000 should be added to... world treasure pool?
