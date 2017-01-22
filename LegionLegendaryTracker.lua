@@ -12,6 +12,8 @@ local dungeonArc
 local dungeonCourt
 --local dungeonKara
 
+--local LLTisMythicPlusRun = 0 --tracking if player is in a mythic plus run
+
 --local raid variables
 local raidNythendra
 local raidElerethe
@@ -40,6 +42,8 @@ local heroicDungeonBossCurrent
 local mythicDungeonBossCurrent
 local LFRRaidBossCurrent
 local normalRaidBossCurrent
+local heroicRaidBossCurrent
+local mythicRaidBossCurrent
 
 
 
@@ -64,11 +68,14 @@ function LegionLegendaryTracker:OnEvent(self, event, ...)
 		LegionLegendaryTracker:frametoggle()
 	end
     if (event == "COMBAT_LOG_EVENT_UNFILTERED") then
-         _G["LLT_F2_Text"]:SetText("dungeon bosses (normal): "..normalDungeonBossCurrent)
-         _G["LLT_F3_Text"]:SetText("dungeon bosses (heroic): "..heroicDungeonBossCurrent)
-         _G["LLT_F4_Text"]:SetText("dungeon bosses (mythic): "..mythicDungeonBossCurrent)
-         _G["LLT_F5_Text"]:SetText("raid bosses (LFR): "..LFRRaidBossCurrent)
-         _G["LLT_F18_Text"]:SetText("total chances: "..temp)
+         _G["LLT_F2_Text"]:SetText("   dungeon bosses (normal): "..normalDungeonBossCurrent)
+         _G["LLT_F3_Text"]:SetText("   dungeon bosses (heroic): "..heroicDungeonBossCurrent)
+         _G["LLT_F4_Text"]:SetText("   dungeon bosses (mythic): TO DO")--..mythicDungeonBossCurrent)
+         _G["LLT_F5_Text"]:SetText("   raid bosses (LFR): "..LFRRaidBossCurrent)
+         _G["LLT_F6_Text"]:SetText("   raid bosses (normal): "..normalRaidBossCurrent)
+         _G["LLT_F7_Text"]:SetText("   raid bosses (heroic): "..heroicRaidBossCurrent)
+         _G["LLT_F8_Text"]:SetText("   raid bosses (mythic): "..mythicRaidBossCurrent)
+--         _G["LLT_F18_Text"]:SetText("   total chances: "..)
     end
 end
 
@@ -148,24 +155,25 @@ function LegionLegendaryTracker:frametoggle()
 end
 
 function LegionLegendaryTracker:startInitialCount()
-    --pomhealcount = 0
-	--_G["pomtracker3_Text"]:SetText("Amount Healed: 0")
 
     LegionLegendaryTracker:findDungeonBossStatistics()
-    LegionLegendaryTracker:findRaidBossStatistics() 
     print ("breakpoint1")
+    LegionLegendaryTracker:findRaidBossStatistics() 
+    print ("breakpoint2")
     
     normalDungeonBoss_Initial = normalDungeonBossCurrent
     heroicDungeonBoss_Initial = heroicDungeonBossCurrent
     mythicDungeonBoss_Initial = mythicDungeonBossCurrent
     LFRRaidBoss_Initial = LFRRaidBossCurrent
+    normalRaidBoss_Initial = normalRaidBossCurrent
+    heroicRaidBoss_Initial = heroicRaidBossCurrent
+    mythicRaidBoss_Initial = mythicRaidBossCurrent
     --print("normalDungeonBoss_Initial :", normalDungeonBoss_Initial)
-    --print("heroicDungeonBoss_Initial :", heroicDungeonBoss_Initial)
-    --print("mythicDungeonBoss_Initial :", mythicDungeonBoss_Initial)
+
 end
 
 function LegionLegendaryTracker:findRaidBossStatistics()
-    --calculate normal raid boss kills (retrieve data from Statistics panel)
+    --calculate LFR raid boss kills (retrieve data from Statistics panel)
     raidNythendra = LegionLegendaryTracker:GetStatisticId("Legion", "Nythendra kills (Raid Finder Emerald Nightmare)")
     raidNythendra = GetStatistic(raidNythendra)
     raidElerethe = LegionLegendaryTracker:GetStatisticId("Legion", "Elerethe Renferal kills (Raid Finder Emerald Nightmare)")
@@ -229,7 +237,202 @@ function LegionLegendaryTracker:findRaidBossStatistics()
     if (raidGuldan == "--")         then raidGuldan = 0         end
     --add up total LFR raidboss kills 
     LFRRaidBossCurrent = (raidNythendra + raidElerethe + raidIlgynoth + raidUrsoc + raidDragons + raidCenarius + raidXavius + raidOdyn + raidGuarm + raidHelya + raidSkorpyron + raidChronomatic + raidTrilliax + raidSpellblade + raidStarAugur + raidHighBot + raidTichon + raidKrosus + raidGrandMag + raidGuldan)
-    print("LFRRaidBossCurrent :", LFRRaidBossCurrent)
+
+    --calculate normal raid boss kills (retrieve data from Statistics panel)
+    raidNythendra = LegionLegendaryTracker:GetStatisticId("Legion", "Nythendra kills (Normal Emerald Nightmare)")
+    raidNythendra = GetStatistic(raidNythendra)
+    raidElerethe = LegionLegendaryTracker:GetStatisticId("Legion", "Elerethe Renferal kills (Normal Emerald Nightmare)")
+    raidElerethe = GetStatistic(raidElerethe)
+    raidIlgynoth = LegionLegendaryTracker:GetStatisticId("Legion", "Il'gynoth kills (Normal Emerald Nightmare)")
+    raidIlgynoth = GetStatistic(raidIlgynoth)
+    raidUrsoc = LegionLegendaryTracker:GetStatisticId("Legion", "Ursoc kills (Normal Emerald Nightmare)")
+    raidUrsoc = GetStatistic(raidUrsoc)
+    raidDragons = LegionLegendaryTracker:GetStatisticId("Legion", "Dragons of Nightmare kills (Normal Emerald Nightmare)")
+    raidDragons = GetStatistic(raidDragons)
+    raidCenarius = LegionLegendaryTracker:GetStatisticId("Legion", "Cenarius redemptions (Normal Emerald Nightmare)")
+    raidCenarius = GetStatistic(raidCenarius)
+    raidXavius = LegionLegendaryTracker:GetStatisticId("Legion", "Xavius kills (Normal Emerald Nightmare)")
+    raidXavius = GetStatistic(raidXavius)
+    raidOdyn = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Normal Trial of Valor)")
+    raidOdyn = GetStatistic(raidOdyn)
+    raidGuarm = LegionLegendaryTracker:GetStatisticId("Legion", "Guarm kills (Normal Trial of Valor)")
+    raidGuarm = GetStatistic(raidGuarm)
+    raidHelya = LegionLegendaryTracker:GetStatisticId("Legion", "Helya kills (Normal Trial of Valor)")
+    raidHelya = GetStatistic(raidHelya)
+    raidSkorpyron = LegionLegendaryTracker:GetStatisticId("Legion", "Skorpyron kills (Normal Nighthold)")
+    raidSkorpyron = GetStatistic(raidSkorpyron)
+    raidChronomatic = LegionLegendaryTracker:GetStatisticId("Legion", "Chronomatic Anomaly kills (Normal Nighthold)")
+    raidChronomatic = GetStatistic(raidChronomatic)
+    raidTrilliax = LegionLegendaryTracker:GetStatisticId("Legion", "Trilliax kills (Normal Nighthold)")
+    raidTrilliax = GetStatistic(raidTrilliax)
+    raidSpellblade = LegionLegendaryTracker:GetStatisticId("Legion", "Spellblade Aluriel kills (Normal Nighthold)")
+    raidSpellblade = GetStatistic(raidSpellblade)
+    raidStarAugur = LegionLegendaryTracker:GetStatisticId("Legion", "Star Augur Etraeus kills (Normal Nighthold)")
+    raidStarAugur = GetStatistic(raidStarAugur)
+    raidHighBot = LegionLegendaryTracker:GetStatisticId("Legion", "High Botanist Tel'arn kills (Normal Nighthold)")
+    raidHighBot = GetStatistic(raidHighBot)
+    raidTichon = LegionLegendaryTracker:GetStatisticId("Legion", "Tichondrius kills (Normal Nighthold)")
+    raidTichon = GetStatistic(raidTichon)
+    raidKrosus = LegionLegendaryTracker:GetStatisticId("Legion", "Krosus kills (Normal Nighthold)")
+    raidKrosus = GetStatistic(raidKrosus)
+    raidGrandMag = LegionLegendaryTracker:GetStatisticId("Legion", "Grand Magistrix Elisande kills (Normal Nighthold)")
+    raidGrandMag = GetStatistic(raidGrandMag)
+    raidGuldan = LegionLegendaryTracker:GetStatisticId("Legion", "Gul'dan kills (Normal Nighthold)")
+    raidGuldan = GetStatistic(raidGuldan)
+    --if any kills are "--" (nil), set their value to zero
+    if (raidNythendra == "--")      then raidNythendra = 0      end
+    if (raidElerethe == "--")       then raidElerethe = 0       end
+    if (raidIlgynoth == "--")       then raidIlgynoth = 0       end
+    if (raidUrsoc == "--")          then raidUrsoc = 0          end
+    if (raidDragons == "--")        then raidDragons = 0        end
+    if (raidCenarius == "--")       then raidCenarius = 0       end
+    if (raidXavius == "--")         then raidXavius = 0         end
+    if (raidOdyn == "--")           then raidOdyn = 0           end
+    if (raidGuarm == "--")          then raidGuarm = 0          end
+    if (raidHelya == "--")          then raidHelya = 0          end
+    if (raidSkorpyron == "--")      then raidSkorpyron = 0      end
+    if (raidChronomatic == "--")    then raidChronomatic = 0    end
+    if (raidTrilliax == "--")       then raidTrilliax = 0       end
+    if (raidSpellblade == "--")     then raidSpellblade = 0     end
+    if (raidStarAugur == "--")      then raidStarAugur = 0      end
+    if (raidHighBot == "--")        then raidHighBot = 0        end
+    if (raidTichon == "--")         then raidTichon = 0         end
+    if (raidKrosus == "--")         then raidKrosus = 0         end
+    if (raidGrandMag == "--")       then raidGrandMag = 0       end
+    if (raidGuldan == "--")         then raidGuldan = 0         end
+    --add up total normal raidboss kills 
+    normalRaidBossCurrent = (raidNythendra + raidElerethe + raidIlgynoth + raidUrsoc + raidDragons + raidCenarius + raidXavius + raidOdyn + raidGuarm + raidHelya + raidSkorpyron + raidChronomatic + raidTrilliax + raidSpellblade + raidStarAugur + raidHighBot + raidTichon + raidKrosus + raidGrandMag + raidGuldan)
+
+    --calculate heroic raid boss kills (retrieve data from Statistics panel)
+    raidNythendra = LegionLegendaryTracker:GetStatisticId("Legion", "Nythendra kills (Heroic Emerald Nightmare)")
+    raidNythendra = GetStatistic(raidNythendra)
+    raidElerethe = LegionLegendaryTracker:GetStatisticId("Legion", "Elerethe Renferal kills (Heroic Emerald Nightmare)")
+    raidElerethe = GetStatistic(raidElerethe)
+    raidIlgynoth = LegionLegendaryTracker:GetStatisticId("Legion", "Il'gynoth kills (Heroic Emerald Nightmare)")
+    raidIlgynoth = GetStatistic(raidIlgynoth)
+    raidUrsoc = LegionLegendaryTracker:GetStatisticId("Legion", "Ursoc kills (Heroic Emerald Nightmare)")
+    raidUrsoc = GetStatistic(raidUrsoc)
+    raidDragons = LegionLegendaryTracker:GetStatisticId("Legion", "Dragons of Nightmare kills (Heroic Emerald Nightmare)")
+    raidDragons = GetStatistic(raidDragons)
+    raidCenarius = LegionLegendaryTracker:GetStatisticId("Legion", "Cenarius redemptions (Heroic Emerald Nightmare)")
+    raidCenarius = GetStatistic(raidCenarius)
+    raidXavius = LegionLegendaryTracker:GetStatisticId("Legion", "Xavius kills (Heroic Emerald Nightmare)")
+    raidXavius = GetStatistic(raidXavius)
+    raidOdyn = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Heroic Trial of Valor)")
+    raidOdyn = GetStatistic(raidOdyn)
+    raidGuarm = LegionLegendaryTracker:GetStatisticId("Legion", "Guarm kills (Heroic Trial of Valor)")
+    raidGuarm = GetStatistic(raidGuarm)
+    raidHelya = LegionLegendaryTracker:GetStatisticId("Legion", "Helya kills (Heroic Trial of Valor)")
+    raidHelya = GetStatistic(raidHelya)
+    raidSkorpyron = LegionLegendaryTracker:GetStatisticId("Legion", "Skorpyron kills (Heroic Nighthold)")
+    raidSkorpyron = GetStatistic(raidSkorpyron)
+    raidChronomatic = LegionLegendaryTracker:GetStatisticId("Legion", "Chronomatic Anomaly kills (Heroic Nighthold)")
+    raidChronomatic = GetStatistic(raidChronomatic)
+    raidTrilliax = LegionLegendaryTracker:GetStatisticId("Legion", "Trilliax kills (Heroic Nighthold)")
+    raidTrilliax = GetStatistic(raidTrilliax)
+    raidSpellblade = LegionLegendaryTracker:GetStatisticId("Legion", "Spellblade Aluriel kills (Heroic Nighthold)")
+    raidSpellblade = GetStatistic(raidSpellblade)
+    raidStarAugur = LegionLegendaryTracker:GetStatisticId("Legion", "Star Augur Etraeus kills (Heroic Nighthold)")
+    raidStarAugur = GetStatistic(raidStarAugur)
+    raidHighBot = LegionLegendaryTracker:GetStatisticId("Legion", "High Botanist Tel'arn kills (Heroic Nighthold)")
+    raidHighBot = GetStatistic(raidHighBot)
+    raidTichon = LegionLegendaryTracker:GetStatisticId("Legion", "Tichondrius kills (Heroic Nighthold)")
+    raidTichon = GetStatistic(raidTichon)
+    raidKrosus = LegionLegendaryTracker:GetStatisticId("Legion", "Krosus kills (Heroic Nighthold)")
+    raidKrosus = GetStatistic(raidKrosus)
+    raidGrandMag = LegionLegendaryTracker:GetStatisticId("Legion", "Grand Magistrix Elisande kills (Heroic Nighthold)")
+    raidGrandMag = GetStatistic(raidGrandMag)
+    raidGuldan = LegionLegendaryTracker:GetStatisticId("Legion", "Gul'dan kills (Heroic Nighthold)")
+    raidGuldan = GetStatistic(raidGuldan)
+    --if any kills are "--" (nil), set their value to zero
+    if (raidNythendra == "--")      then raidNythendra = 0      end
+    if (raidElerethe == "--")       then raidElerethe = 0       end
+    if (raidIlgynoth == "--")       then raidIlgynoth = 0       end
+    if (raidUrsoc == "--")          then raidUrsoc = 0          end
+    if (raidDragons == "--")        then raidDragons = 0        end
+    if (raidCenarius == "--")       then raidCenarius = 0       end
+    if (raidXavius == "--")         then raidXavius = 0         end
+    if (raidOdyn == "--")           then raidOdyn = 0           end
+    if (raidGuarm == "--")          then raidGuarm = 0          end
+    if (raidHelya == "--")          then raidHelya = 0          end
+    if (raidSkorpyron == "--")      then raidSkorpyron = 0      end
+    if (raidChronomatic == "--")    then raidChronomatic = 0    end
+    if (raidTrilliax == "--")       then raidTrilliax = 0       end
+    if (raidSpellblade == "--")     then raidSpellblade = 0     end
+    if (raidStarAugur == "--")      then raidStarAugur = 0      end
+    if (raidHighBot == "--")        then raidHighBot = 0        end
+    if (raidTichon == "--")         then raidTichon = 0         end
+    if (raidKrosus == "--")         then raidKrosus = 0         end
+    if (raidGrandMag == "--")       then raidGrandMag = 0       end
+    if (raidGuldan == "--")         then raidGuldan = 0         end
+    --add up total Heroic raidboss kills 
+    heroicRaidBossCurrent = (raidNythendra + raidElerethe + raidIlgynoth + raidUrsoc + raidDragons + raidCenarius + raidXavius + raidOdyn + raidGuarm + raidHelya + raidSkorpyron + raidChronomatic + raidTrilliax + raidSpellblade + raidStarAugur + raidHighBot + raidTichon + raidKrosus + raidGrandMag + raidGuldan)
+
+    --calculate mythic raid boss kills (retrieve data from Statistics panel)
+    raidNythendra = LegionLegendaryTracker:GetStatisticId("Legion", "Nythendra kills (Mythic Emerald Nightmare)")
+    raidNythendra = GetStatistic(raidNythendra)
+    raidElerethe = LegionLegendaryTracker:GetStatisticId("Legion", "Elerethe Renferal kills (Mythic Emerald Nightmare)")
+    raidElerethe = GetStatistic(raidElerethe)
+    raidIlgynoth = LegionLegendaryTracker:GetStatisticId("Legion", "Il'gynoth kills (Mythic Emerald Nightmare)")
+    raidIlgynoth = GetStatistic(raidIlgynoth)
+    raidUrsoc = LegionLegendaryTracker:GetStatisticId("Legion", "Ursoc kills (Mythic Emerald Nightmare)")
+    raidUrsoc = GetStatistic(raidUrsoc)
+    raidDragons = LegionLegendaryTracker:GetStatisticId("Legion", "Dragons of Nightmare kills (Mythic Emerald Nightmare)")
+    raidDragons = GetStatistic(raidDragons)
+    raidCenarius = LegionLegendaryTracker:GetStatisticId("Legion", "Cenarius redemptions (Mythic Emerald Nightmare)")
+    raidCenarius = GetStatistic(raidCenarius)
+    raidXavius = LegionLegendaryTracker:GetStatisticId("Legion", "Xavius kills (Mythic Emerald Nightmare)")
+    raidXavius = GetStatistic(raidXavius)
+    raidOdyn = LegionLegendaryTracker:GetStatisticId("Legion", "Odyn defeats (Mythic Trial of Valor)")
+    raidOdyn = GetStatistic(raidOdyn)
+    raidGuarm = LegionLegendaryTracker:GetStatisticId("Legion", "Guarm kills (Mythic Trial of Valor)")
+    raidGuarm = GetStatistic(raidGuarm)
+    raidHelya = LegionLegendaryTracker:GetStatisticId("Legion", "Helya kills (Mythic Trial of Valor)")
+    raidHelya = GetStatistic(raidHelya)
+    raidSkorpyron = LegionLegendaryTracker:GetStatisticId("Legion", "Skorpyron kills (Mythic Nighthold)")
+    raidSkorpyron = GetStatistic(raidSkorpyron)
+    raidChronomatic = LegionLegendaryTracker:GetStatisticId("Legion", "Chronomatic Anomaly kills (Mythic Nighthold)")
+    raidChronomatic = GetStatistic(raidChronomatic)
+    raidTrilliax = LegionLegendaryTracker:GetStatisticId("Legion", "Trilliax kills (Mythic Nighthold)")
+    raidTrilliax = GetStatistic(raidTrilliax)
+    raidSpellblade = LegionLegendaryTracker:GetStatisticId("Legion", "Spellblade Aluriel kills (Mythic Nighthold)")
+    raidSpellblade = GetStatistic(raidSpellblade)
+    raidStarAugur = LegionLegendaryTracker:GetStatisticId("Legion", "Star Augur Etraeus kills (Mythic Nighthold)")
+    raidStarAugur = GetStatistic(raidStarAugur)
+    raidHighBot = LegionLegendaryTracker:GetStatisticId("Legion", "High Botanist Tel'arn kills (Mythic Nighthold)")
+    raidHighBot = GetStatistic(raidHighBot)
+    raidTichon = LegionLegendaryTracker:GetStatisticId("Legion", "Tichondrius kills (Mythic Nighthold)")
+    raidTichon = GetStatistic(raidTichon)
+    raidKrosus = LegionLegendaryTracker:GetStatisticId("Legion", "Krosus kills (Mythic Nighthold)")
+    raidKrosus = GetStatistic(raidKrosus)
+    raidGrandMag = LegionLegendaryTracker:GetStatisticId("Legion", "Grand Magistrix Elisande kills (Mythic Nighthold)")
+    raidGrandMag = GetStatistic(raidGrandMag)
+    raidGuldan = LegionLegendaryTracker:GetStatisticId("Legion", "Gul'dan kills (Mythic Nighthold)")
+    raidGuldan = GetStatistic(raidGuldan)
+    --if any kills are "--" (nil), set their value to zero
+    if (raidNythendra == "--")      then raidNythendra = 0      end
+    if (raidElerethe == "--")       then raidElerethe = 0       end
+    if (raidIlgynoth == "--")       then raidIlgynoth = 0       end
+    if (raidUrsoc == "--")          then raidUrsoc = 0          end
+    if (raidDragons == "--")        then raidDragons = 0        end
+    if (raidCenarius == "--")       then raidCenarius = 0       end
+    if (raidXavius == "--")         then raidXavius = 0         end
+    if (raidOdyn == "--")           then raidOdyn = 0           end
+    if (raidGuarm == "--")          then raidGuarm = 0          end
+    if (raidHelya == "--")          then raidHelya = 0          end
+    if (raidSkorpyron == "--")      then raidSkorpyron = 0      end
+    if (raidChronomatic == "--")    then raidChronomatic = 0    end
+    if (raidTrilliax == "--")       then raidTrilliax = 0       end
+    if (raidSpellblade == "--")     then raidSpellblade = 0     end
+    if (raidStarAugur == "--")      then raidStarAugur = 0      end
+    if (raidHighBot == "--")        then raidHighBot = 0        end
+    if (raidTichon == "--")         then raidTichon = 0         end
+    if (raidKrosus == "--")         then raidKrosus = 0         end
+    if (raidGrandMag == "--")       then raidGrandMag = 0       end
+    if (raidGuldan == "--")         then raidGuldan = 0         end
+    --add up total mythic raidboss kills 
+    mythicRaidBossCurrent = (raidNythendra + raidElerethe + raidIlgynoth + raidUrsoc + raidDragons + raidCenarius + raidXavius + raidOdyn + raidGuarm + raidHelya + raidSkorpyron + raidChronomatic + raidTrilliax + raidSpellblade + raidStarAugur + raidHighBot + raidTichon + raidKrosus + raidGrandMag + raidGuldan)
+    
 end
 
 
@@ -340,6 +543,20 @@ function LegionLegendaryTracker:findDungeonBossStatistics()
     --print("mythicDungeonBossCurrent :", mythicDungeonBossCurrent)
 end
 
+--local inChallengeMode = (scenarioType == LE_SCENARIO_TYPE_CHALLENGE_MODE);
+
+--function checkIfMythicPlusRun()
+--    if (event == "CHALLENGE_MODE_START") then
+--        LLTisMythicPlusRun = 1
+--    end
+--    if (event == "CHALLENGE_MODE_COMPLETED") then
+--        LLTisMythicPlusRun = 0
+--        mythicPlusesCompletedCount = mythicPlusesCompletedCount + 1
+--    end
+--end
+    
+
+--Function to get statistic information from blizzard's statistic panel.
 function LegionLegendaryTracker:GetStatisticId(CategoryTitle, StatisticTitle)
 	local str = ""
 	for _, CategoryId in pairs(GetStatisticsCategoryList()) do
@@ -361,7 +578,7 @@ function LegionLegendaryTracker:GetStatisticId(CategoryTitle, StatisticTitle)
 	return -1
 end
 
-
+--Handles LLT terminal commands
 function LegionLegendaryTracker:tracker_SlashCommandHandler(msg)
 	local frame1 = _G["LLT_F1"]
 	if (msg == "gui" or msg == nil) then
